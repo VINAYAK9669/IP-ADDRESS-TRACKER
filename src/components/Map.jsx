@@ -6,11 +6,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-function Map({ ipLocation }) {
+function Map({ ipLocation, ipAddress, error }) {
   const mapRef = useRef(null);
 
-  const [latitude, setLatitude] = useState(40.52006);
-  const [longitude, setLongitude] = useState(-82.09737);
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
 
   const position =
     ipLocation?.location === undefined
@@ -18,14 +18,24 @@ function Map({ ipLocation }) {
       : ipLocation?.location;
 
   useEffect(() => {
-    position === 422 ? setLatitude(40.52006) : setLatitude(position?.lat);
+    position === 422 ? setLatitude(null) : setLatitude(position?.lat);
 
-    position === 422 ? setLongitude(-82.09737) : setLongitude(position?.lng);
+    position === 422 ? setLongitude(null) : setLongitude(position?.lng);
   }, [ipLocation]);
+
+  if (!error && latitude === undefined) {
+    return (
+      <>
+        <div className="flex h-full items-center justify-center">
+          <p>We are fetching your location...</p>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      {latitude ? (
+      {latitude !== null && position ? (
         <MapContainer
           center={[latitude, longitude]}
           zoom={13}
@@ -48,7 +58,7 @@ function Map({ ipLocation }) {
         </MapContainer>
       ) : (
         <p className="text-center text-red-500">
-          OOPS! Unable to locate 😥: Enter a valid IPv6 Address
+          OOPS! Something Went Wrong 😥
         </p>
       )}
     </>

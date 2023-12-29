@@ -4,6 +4,7 @@ import arrow from "../images/arrow.svg";
 
 function HeroInput({ setIp }) {
   const [userInput, setUserInput] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
     setIp(userInput);
@@ -14,6 +15,7 @@ function HeroInput({ setIp }) {
       <h1 className="mt-6  text-[1.8rem]  font-medium text-slate-50">
         IP Address Tracker
       </h1>
+
       <form onSubmit={handleSubmit}>
         <div className="flex gap-x-[2px] p-1">
           <input
@@ -23,6 +25,7 @@ function HeroInput({ setIp }) {
             onChange={(e) => setUserInput(e.target.value)}
             required
           />
+
           <button
             className="rounded-r-lg bg-very_dark_gray p-2 px-4"
             type="submit"
