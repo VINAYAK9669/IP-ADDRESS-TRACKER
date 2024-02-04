@@ -14,7 +14,7 @@ This project is a solution to the [IP address tracker challenge on Frontend Ment
 ## Demo
 
 - [Live Site](https://vinayak9669.github.io/IP-ADDRESS-TRACKER/)
-- [Frontend Mentor Solution URL](https://your-solution-url.com)
+- [Frontend Mentor Solution URL](https://www.frontendmentor.io/solutions/responsive-ip-address-tracker-using-react-7qcGwTUnCY)
 
 ## Built with
 
